@@ -29,7 +29,7 @@ bool isMediumScreen(BuildContext context) {
 /// * inDrawer is optional and set to false. If true and applicable, this will be set in the [Drawer]
 class AdaptiveScaffoldDestination {
   final String title;
-  final IconData icon;
+  final Widget icon;
   final bool inDrawer;
   final Widget destination;
 
@@ -151,7 +151,7 @@ class _AdaptiveScaffoldState extends State<AdaptiveScaffold> {
               destinations: [
                 ...widget.destinations.where((d) => d.inDrawer == false).map(
                       (d) => NavigationRailDestination(
-                        icon: Icon(d.icon),
+                        icon: d.icon,
                         label: Text(d.title),
                       ),
                     ),
@@ -223,9 +223,7 @@ class _AdaptiveScaffoldState extends State<AdaptiveScaffold> {
         items: [
           ...widget.destinations.where((d) => d.inDrawer == false).map(
                 (d) => BottomNavigationBarItem(
-                  icon: Icon(
-                    d.icon,
-                  ),
+                  icon: d.icon,
                   title: Text(
                     d.title,
                   ),
@@ -284,7 +282,7 @@ class _AdaptiveScaffoldState extends State<AdaptiveScaffold> {
                             ? activeStyle
                             : BoxDecoration(),
                     child: ListTile(
-                      leading: Icon(d.icon),
+                      leading: d.icon,
                       title: Text(d.title),
                       selected:
                           widget.destinations.indexOf(d) == widget.currentIndex,
